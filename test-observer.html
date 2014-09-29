@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		document.addEventListener("DOMContentLoaded", function(){
+			new MutationObserver(function(mutations){
+				console.log(mutations);
+			}, false).observe(document.body, {
+				childList: true,
+				subtree: true
+			});
+			var test = Array(1000).join("text<br>");
+			document.querySelector(".container").innerHTML = test;
+		});
+	</script>
+</head>
+<body>
+	<div class="container"></div>
+</body>
+</html>
