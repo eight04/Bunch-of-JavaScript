@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="tw">
+<head>
+	<meta charset="UTF-8">
+	<title>Observer vs. DOMNodeInserted</title>
+	<script>
+	function test(){
+		document.body.innerHTML = "test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>test<br>";
+		//var i;
+		//for (i = 0; i < 40; i++) {
+			//document.body.innerHTML = i + "<br>";
+		//}
+	}
+	var dni = 0, mo = 0;
+	
+	window.onload = function(){
+		document.body.addEventListener("DOMNodeInserted", function(e){
+			dni++;
+		});
+		
+		new MutationObserver(function(e){
+			mo += e.length;
+		}).observe(document.body, {childList: true, subtree: true});
+	}
+	</script>
+</head>
+<body>
+	<button onclick="test()">test</button>
+</body>
+</html>

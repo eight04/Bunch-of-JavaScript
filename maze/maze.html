@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Maze</title>
+	<script src="maze.js"></script>
+	<link rel="stylesheet" href="maze.css">
+</head>
+<body>
+	<div id="maze1" class="maze"></div>
+	<div id="maze2" class="maze"></div>
+	<div id="maze3" class="maze"></div>
+	<div id="maze4" class="maze"></div>
+	<button onclick="toggle()">toggle</button>
+	<script>
+		
+		var mazes = [];
+		mazes[0] = maze(10, 10, 1, "#maze1");
+		mazes[1] = maze(20, 20, 2, "#maze2");
+		mazes[2] = maze(45, 45, 5, "#maze3");
+		mazes[3] = maze(16, 32, 10, "#maze4", true);
+		var running = 1;
+		function toggle(){
+			if(running){
+				for(var i=0; i<mazes.length; i++)
+					mazes[i].workers.stop();
+			}else{
+				for(var i=0; i<mazes.length; i++)
+					mazes[i].workers.start();
+			}
+			running = !running;
+		}
+	</script>
+</body>
+</html>

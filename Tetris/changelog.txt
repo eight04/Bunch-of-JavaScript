@@ -1,0 +1,5 @@
+====	10/15
+# 開始新的Tetris專案
+# 有一個主要timeline 依固定的間隔處理move_que中的事件
+# 有一個dropline 依固定的間隔 把「下」事件加入que
+# 監聽鍵盤 把事件加入que

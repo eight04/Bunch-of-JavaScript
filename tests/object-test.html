@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>"New" Test</title>
+</head>
+<body>
+	<script>
+		var o = {
+			value: 0,
+			add: function(){
+				this.value++;
+			}
+		};
+		
+		var a = Object.create(o);
+		var b = Object.create(o);
+		
+		console.log("add" in a, a.hasOwnProperty("add"));
+	</script>
+</body>
+</html>

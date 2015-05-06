@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Tetris!</title>
+<style type="text/css">
+#board{
+	background: black;
+}
+</style>
+<script type="text/javascript">
+var move_que=[];
+var board_width=10;
+var board_height=20;
+var block_size=20;
+function timeline(){
+	setTimeout(function(){timeline();},500);
+}
+function drawboard(){
+	var board=document.getElementById("board");
+	board.style.width=board_width*block_size+"px";
+	board.style.height=board_height*block_size+"px";
+	var l=board_width*board_height;
+	for(var i=0;i<l;i++){
+		var t=document.createElement("div");
+		t.style.width=block_size-2+"px";
+		t.style.height=block_size-2+"px";
+		t.style.border="1px solid white";
+		t.style.cssFloat="left";
+		board.appendChild(t);
+	}
+}
+function init(){
+	drawboard();
+}
+document.addEventListener("DOMContentLoaded",init,false);
+</script>
+</head>
+<body>
+<div id="container">
+	<div id="board"></div>
+	<div id="sideBoard"></div>
+</div>
+</body>
+</html>

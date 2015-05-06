@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- 201312240232 -->
+<title>NEI Dump Cleaner</title>
+<style type="text/css">
+
+textarea{
+	display: block;
+	width: 400px;
+	height: 200px;
+}
+</style>
+<script type="text/javascript">
+var suggest = "";
+var output = "";
+  
+function start(){
+  var a=document.getElementById("input").value;
+  var b=document.getElementById("output");
+  
+  console.log("start");
+  a=a.split("\n");
+  var left=-1;
+  var right=-1;
+  output = "";
+	suggest = "";
+  //console.log("a.length: "+a.length);
+  for(var i=0;i<a.length;i++){
+		var t=a[i].split(",");
+		var c=t[0]*1;
+		if(!c && t[0]!="0"){
+			//console.log("not number");
+			continue;
+		}
+		
+		if(left == -1){
+			left = c;
+			right = c;
+		}else	if(c == right+1){
+			right = c;
+		}else{
+			/*
+			if(!confirm("left: "+left+" right: "+right)){
+				return;
+			}
+			*/
+			
+			printlr(left,right);
+			left = c;
+			right = c;
+		}
+  }
+	printlr(left,right);
+	
+
+  output = "Suggest range:\n" + suggest + "\nAll:\n" + output;
+  b.value = output;
+  
+  console.log("end");
+}
+
+function printlr(l,r){
+	if(l == r){
+		output += l + "\n";
+	}else{
+		output += l + "~" + r + "\n";
+		if(r - l >= 200){
+			suggest += l+"~"+r+" ("+ (r - l) +" ids)\n";
+		}
+	}
+}
+
+</script>
+</head>
+<body>
+<div id="container">
+	Don't forget to -256 to get actual id before write in config files!
+	<textarea id="input"></textarea>
+  <button id="start" onclick="start()">Tidy</button>
+  <textarea id="output"></textarea>
+</div>
+</body>
+</html>

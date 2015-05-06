@@ -1,0 +1,30 @@
+  
+.cell{
+	border: 1px solid black;
+	float: left;
+	width: 10px;
+	height: 10px;
+}
+.line{
+	clear: both;
+}
+.maze{
+	border: 1px solid black;
+	float: left;
+	margin: 15px;
+}
+.w{
+	border-left: 1px solid transparent;
+}
+.n{
+	border-top: 1px solid transparent;
+}
+.e{
+	border-right: 1px solid transparent;
+}
+.s{
+	border-bottom: 1px solid transparent;
+}
+.clearfix{
+	clear: both;
+}

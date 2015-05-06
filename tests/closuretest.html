@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Closure Performance Test</title>
+</head>
+<body>
+	<script>
+		var sample = 1000000,
+			f,
+			start,
+			end;
+			
+		if(navigator.userAgent.search("Chrome")>0)
+			sample = 10000000;
+			
+		console.log("closure")
+		function func1(){
+			var v = 0
+			return {
+				get: function(){
+					return v;
+				},
+				add: function(){
+					v++;
+				}
+			}
+		}
+		f = func1();
+		start = new Date();
+		for(var i = 0; i<sample; i++){
+			f.add();
+		}
+		console.log(f.get());
+		end = new Date();
+		diff = end.getTime() - start.getTime();
+		console.log(diff);
+		
+		
+		console.log("function scope")
+		function func2(){
+			return {
+				value: 0,
+				add: function(){
+					this.value++;
+				}
+			}
+		}
+		f = func2();
+		start = new Date();
+		for(var i = 0; i<sample; i++){
+			f.add();
+		}
+		console.log(f.value);
+		end = new Date();
+		diff = end.getTime() - start.getTime();
+		console.log(diff);
+		
+		console.log("literal notation")
+		f = {
+			value: 0,
+			add: function(){
+				this.value++;
+			}
+		};
+		start = new Date();
+		for(var i = 0; i<sample; i++){
+			f.add();
+		}
+		console.log(f.value);
+		end = new Date();
+		diff = end.getTime() - start.getTime();
+		console.log(diff);
+		
+		console.log("function prototype")
+		var _func3 = {
+			value: 0,
+			add: function(){
+				this.value++;
+			}
+		};		
+		function Func3(){}
+		Func3.prototype = _func3
+		f = new Func3();
+		start = new Date();
+		for(var i = 0; i<sample; i++){
+			f.add();
+		}
+		console.log(f.value);
+		end = new Date();
+		diff = end.getTime() - start.getTime();
+		console.log(diff);
+		
+		console.log("Object.create")
+		var Func4 = {
+			value: 0,
+			add: function(){
+				this.value++;
+			}
+		};		
+		f = Object.create(Func4);
+		start = new Date();
+		for(var i = 0; i<sample; i++){
+			f.add();
+		}
+		console.log(f.value);
+		end = new Date();
+		diff = end.getTime() - start.getTime();
+		console.log(diff);
+	</script>
+</body>
+</html>

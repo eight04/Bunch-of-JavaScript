@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>"setTimeout" Test</title>
+</head>
+<body>
+	
+	<script>
+		var now = new Date();
+		
+		setTimeout(function(){
+			var now2 = new Date();
+			console.log(now2 - now);
+		}, 1);
+	</script>
+</body>
+</html>

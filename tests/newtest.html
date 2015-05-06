@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>"New" Test</title>
+</head>
+<body>
+	<script>
+		var _myobject = {
+			value: 0,
+			add: function(){
+				this.value++;
+			}
+		};
+		
+		function MyObject(){}
+		MyObject.prototype = _myobject;
+		
+		var f = new MyObject();
+		console.log(f.value);
+		f.add()
+		console.log(f.value);
+		var f2 = new MyObject();
+		console.log(f2.value);
+		f2.add();
+		console.log(f.value);
+	</script>
+</body>
+</html>
