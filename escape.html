@@ -1,0 +1,71 @@
+<!DOCTYPE>
+
+<style type="text/css">
+#escapeSource,#escapeOutput{width: 47%;height: 300px;}
+</style>
+
+<div>
+	<textarea id="escapeSource"></textarea>
+	<textarea id="escapeOutput"></textarea>
+</div>
+<input type="text" id="escapeTab" value="4" />
+<input type="button" id="escapeStart" value="Start" />
+<pre><code id="escapePreview"></code></pre>
+
+<script>
+(function(){
+function start(){
+	var source=document.getElementById("escapeSource").value;
+	var tab=document.getElementById("escapeTab").value*1;
+	var output=document.getElementById("escapeOutput");
+	var preview=document.getElementById("escapePreview");
+	
+	var lines=source.split(/\r?\n/);
+	preview.innerHTML="";
+	for(var i=0;i<lines.length;i++){
+		var l=lines[i];
+		var p=0;
+		var o="";
+		l=l.split("");
+		console.log(l.join(","));
+		for(var j=0;j<l.length;j++){
+			switch(l[j]){
+			case '\t':
+				o+=makeSpace(tab-p%tab);
+				p+=tab-p%tab;
+			break;
+			default:
+				o+=l[j];
+				p+=getLength(l[j]);
+			break;
+			}
+		}
+		lines[i]=document.createTextNode(o.replace(/ /g,"\u00a0"));	
+		preview.appendChild(lines[i]);
+		if(i+1<lines.length)
+			preview.appendChild(document.createElement("br"));
+		//這個做法會造成Memory Leak嗎？
+	}
+	output.value=preview.innerHTML;
+}
+
+function makeSpace(k){
+	var o="";
+	for(var i=0;i<k;i++)
+		o+=" ";
+	return o;
+}
+
+function getLength(c){
+	switch(encodeURIComponent(c).length){
+	case 9:
+		return 2;
+	default:
+		return 1;
+	}
+}
+
+var button=document.getElementById("escapeStart");
+button.addEventListener("click",start,false);
+})();
+</script>
