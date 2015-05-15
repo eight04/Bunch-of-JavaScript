@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+<head>
+	<meta charset="UTF-8">
+	<title>Table border</title>
+	<style type="text/css">
+		table {
+			border-collapse: collapse;
+			white-space: nowrap;
+		}
+		th, td {
+			border: 1px solid silver;
+			padding: 0.4em 0.8em;
+		}
+		.table-responsive {
+			border: 1px solid red;
+			display: inline-block;
+			overflow: hidden;
+			max-width: 100%;
+			white-space: nowrap;
+			overflow-x: auto;
+		}
+		.table-responsive table {
+			margin: -1px;
+		}
+		.clipper {
+			overflow: hidden;
+			display: inline-block;
+			vertical-align: top;
+		}
+		.table-responsive2 {
+			display: inline-block;
+			max-width: 100%;
+			vertical-align: top;
+			overflow-x: auto;
+			position: relative;
+			border: 1px solid silver;
+		}
+		.table-responsive2 td:first-child,
+		.table-responsive2 th:first-child {
+			border-left: none;
+		}
+		.table-responsive2 > :first-child > :first-child th,
+		.table-responsive2 > :first-child > :first-child td {
+			border-top: none;
+		}
+		.table-responsive2 td,
+		.table-responsive2 th {
+			border-bottom: none;
+			border-right: none;
+		}
+/*
+		.table-responsive2 th,
+		.table-responsive2 td {
+			border-right: none;
+			border-bottom: none;
+		}
+		.table-responsive2 thead th {
+			border-top: none;
+		}
+*/
+		.table-responsive2:after {
+/*
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			border: 1px solid red;
+*/
+		}
+	</style>
+</head>
+<body ng-controller="main" class="container padder">
+	<div class="table-responsive">
+		<div class="clipper">
+			<table>
+				<thead>
+					<tr>
+						<th>Title 1</th>
+						<th>Title 2</th>
+						<th>Title 3</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Content 1</td>
+						<td>Content 2</td>
+						<td>Content 3</td>
+					</tr>
+					<tr>
+						<td>Content 1</td>
+						<td>Content 2</td>
+						<td>Content 3</td>
+					</tr>
+					<tr>
+						<td>Content 1</td>
+						<td>Content 2</td>
+						<td>Content 3</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="table-responsive2">
+		<table>
+			<thead>
+				<tr>
+					<th>Title 1</th>
+					<th>Title 2</th>
+					<th>Title 3</th>
+					<th>Title 4</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="4">Content 0</td>
+					<td>Content 1</td>
+					<td>Content 2</td>
+					<td>Content 3</td>
+				</tr>
+				<tr>
+					<td>Content 1</td>
+					<td>Content 2</td>
+					<td>Content 3</td>
+				</tr>
+				<tr>
+					<td>Content 1</td>
+					<td>Content 2</td>
+					<td>Content 3</td>
+				</tr>
+				<tr>
+					<td>Content 1</td>
+					<td>Content 2</td>
+					<td>Content 3</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
